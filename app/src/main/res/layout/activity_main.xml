@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+
+
+      <!--  <variable name="name" type="String"></variable>
+        <variable name="last_name" type="String"></variable>-->
+
+        <variable
+            name="map"
+            type="java.util.Map" />
+        <variable
+            name="data"
+            type="in.dotworld.databinding.Data" />
+        <variable
+            name="viewmodel"
+            type="in.dotworld.databinding.SimpleViewmodel" />
+        <variable
+            name="click"
+            type="in.dotworld.databinding.MainActivity" />
+        <variable
+            name="handler"
+            type="in.dotworld.databinding.MainActivity.Handler" />
+    </data>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            tools:context=".MainActivity">
+
+            <TextView
+                android:id="@+id/first_name"
+                android:layout_marginTop="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:gravity="center"
+                android:textSize="20dp"
+                android:layout_marginHorizontal="30dp"
+                android:paddingLeft="@{100}"
+                android:greeting="@{data.firstName}" />
+
+            <!--android:greetings="@{viewmodel.name}"/>-->
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_marginTop="20dp"
+                android:layout_height="35dp"
+                android:textSize="20dp"
+                android:layout_marginHorizontal="30dp"
+                android:text="@{data.lastName}" />
+
+            <!--  android:visibility="@{data.firstName==null ? View.GONE : View.VISIBLE}"/>-->
+            <!-- android:text="@{data.firstName + data.lastname}"-->
+
+            <EditText
+                android:id="@+id/textView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="30dp"
+                android:layout_marginTop="20dp"
+                android:text="@={data.firstName}" />
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center">
+                    <Button
+                        android:id="@+id/clickbutton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="20dp"
+                        android:onClick="@{(v) -> click.onbutton(v)}"
+                        android:text="click" />
+
+                    <Button
+                        android:id="@+id/longclick"
+                        android:layout_width="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:onLongClick="@{(v) -> click.onLongClick(v,data.firstName)}"
+                        android:text="Long click" />
+
+                    <Button
+                        android:id="@+id/handlerclick"
+                        android:layout_width="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:onClick="@{handler::onClicking}"
+                        android:text="class" />
+            </LinearLayout>
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_marginTop="20dp"
+                android:layout_marginHorizontal="30dp"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:text="@={viewmodel.number}"/>
+
+            <ImageView
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                app:ImageUrl="@{viewmodel.imageid}"></ImageView>
+        </LinearLayout>
+    </ScrollView>
+</layout>
